@@ -1,0 +1,402 @@
+Program.Sub.ScreenSU.Start
+gui.SS_BOMRouter..create
+gui.SS_BOMRouter..caption("BOM/Router Explosion with Labor/Material Totals")
+gui.SS_BOMRouter..size(7800,2550)
+gui.SS_BOMRouter..minx(0)
+gui.SS_BOMRouter..miny(0)
+gui.SS_BOMRouter..position(0,0)
+gui.SS_BOMRouter..event(unload,ss_BOMRouter_unload)
+gui.SS_BOMRouter..alwaysontop(False)
+gui.SS_BOMRouter..fontname("Arial")
+gui.SS_BOMRouter..fontsize(8)
+gui.SS_BOMRouter..forecolor(0)
+gui.SS_BOMRouter..fontstyle(,,,,)
+gui.SS_BOMRouter..BackColor(-2147483633)
+gui.SS_BOMRouter..controlbox(True)
+gui.SS_BOMRouter..maxbutton(False)
+gui.SS_BOMRouter..minbutton(False)
+gui.SS_BOMRouter..mousepointer(0)
+gui.SS_BOMRouter..moveable(True)
+gui.SS_BOMRouter..sizeable(False)
+gui.SS_BOMRouter..ShowInTaskBar(True)
+gui.SS_BOMRouter..titlebar(True)
+gui.SS_BOMRouter.lbl_ddlType.create(label,"Type",True,1800,200,1,100,135,True,0,Arial,8,-2147483633,0)
+gui.SS_BOMRouter.lbl_ddlType.defaultvalue("")
+gui.SS_BOMRouter.lbl_ddlType.controlgroup(0)
+gui.SS_BOMRouter.ddlType.create(dropdownlist)
+gui.SS_BOMRouter.ddlType.visible(True)
+gui.SS_BOMRouter.ddlType.size(1800,330)
+gui.SS_BOMRouter.ddlType.zorder(0)
+gui.SS_BOMRouter.ddlType.position(100,335)
+gui.SS_BOMRouter.ddlType.enabled(True)
+gui.SS_BOMRouter.ddlType.fontname("Arial")
+gui.SS_BOMRouter.ddlType.fontsize(8)
+gui.SS_BOMRouter.ddlType.event(click,ddltype_change)
+gui.SS_BOMRouter.ddlType.defaultvalue("")
+gui.SS_BOMRouter.ddlType.controlgroup(0)
+gui.SS_BOMRouter.lbl_txtBomRtr.create(label,"BOM/Router",True,1800,200,1,100,835,True,0,Arial,8,-2147483633,0)
+gui.SS_BOMRouter.lbl_txtBomRtr.defaultvalue("")
+gui.SS_BOMRouter.lbl_txtBomRtr.controlgroup(0)
+gui.SS_BOMRouter.txtBomRtr.create(textbox,"",True,1800,330,0,100,1035,True,0,Arial,8,16777215,1)
+gui.SS_BOMRouter.txtBomRtr.defaultvalue("")
+gui.SS_BOMRouter.txtBomRtr.controlgroup(1)
+gui.SS_BOMRouter.cmd_txtBomRtr.create(button)
+gui.SS_BOMRouter.cmd_txtBomRtr.caption("^")
+gui.SS_BOMRouter.cmd_txtBomRtr.visible(True)
+gui.SS_BOMRouter.cmd_txtBomRtr.size(340,330)
+gui.SS_BOMRouter.cmd_txtBomRtr.zorder(0)
+gui.SS_BOMRouter.cmd_txtBomRtr.position(1985,1035)
+gui.SS_BOMRouter.cmd_txtBomRtr.enabled(True)
+gui.SS_BOMRouter.cmd_txtBomRtr.fontname("Arial")
+gui.SS_BOMRouter.cmd_txtBomRtr.fontsize(8)
+gui.SS_BOMRouter.cmd_txtBomRtr.event(click,cmd_txtbomrtr_click)
+gui.SS_BOMRouter.cmd_txtBomRtr.defaultvalue("")
+gui.SS_BOMRouter.cmd_txtBomRtr.controlgroup(0)
+gui.SS_BOMRouter.lbl_txtDesc.create(label,"Description",True,1800,200,1,2455,835,True,0,Arial,8,-2147483633,0)
+gui.SS_BOMRouter.lbl_txtDesc.defaultvalue("")
+gui.SS_BOMRouter.lbl_txtDesc.controlgroup(0)
+gui.SS_BOMRouter.txtDesc.create(textbox,"",True,3200,330,0,2455,1035,True,0,Arial,8,16777215,1)
+gui.SS_BOMRouter.txtDesc.defaultvalue("")
+gui.SS_BOMRouter.txtDesc.controlgroup(1)
+gui.SS_BOMRouter.lbl_txtQty.create(label,"Quantity",True,1800,200,1,5705,835,True,0,Arial,8,-2147483633,0)
+gui.SS_BOMRouter.lbl_txtQty.defaultvalue("")
+gui.SS_BOMRouter.lbl_txtQty.controlgroup(0)
+gui.SS_BOMRouter.txtQty.create(textbox,"",True,1800,330,0,5705,1035,True,0,Arial,8,16777215,1)
+gui.SS_BOMRouter.txtQty.numericonly(1)
+gui.SS_BOMRouter.txtQty.defaultvalue("")
+gui.SS_BOMRouter.txtQty.controlgroup(1)
+gui.SS_BOMRouter.cmdPrint.create(button)
+gui.SS_BOMRouter.cmdPrint.caption("Print")
+gui.SS_BOMRouter.cmdPrint.visible(True)
+gui.SS_BOMRouter.cmdPrint.size(1000,360)
+gui.SS_BOMRouter.cmdPrint.zorder(0)
+gui.SS_BOMRouter.cmdPrint.position(100,1535)
+gui.SS_BOMRouter.cmdPrint.enabled(True)
+gui.SS_BOMRouter.cmdPrint.fontname("Arial")
+gui.SS_BOMRouter.cmdPrint.fontsize(8)
+gui.SS_BOMRouter.cmdPrint.event(click,cmdprint_click)
+gui.SS_BOMRouter.cmdPrint.defaultvalue("")
+gui.SS_BOMRouter.cmdPrint.controlgroup(0)
+gui.SS_BOMRouter.ddlType.tabstop(true)
+gui.SS_BOMRouter.ddlType.tabindex(1)
+gui.SS_BOMRouter.txtBomRtr.tabstop(true)
+gui.SS_BOMRouter.txtBomRtr.tabindex(2)
+gui.SS_BOMRouter.cmd_txtBomRtr.tabstop(true)
+gui.SS_BOMRouter.cmd_txtBomRtr.tabindex(3)
+gui.SS_BOMRouter.txtDesc.tabstop(true)
+gui.SS_BOMRouter.txtDesc.tabindex(4)
+gui.SS_BOMRouter.txtQty.tabstop(true)
+gui.SS_BOMRouter.txtQty.tabindex(5)
+gui.SS_BOMRouter.cmdPrint.tabstop(true)
+gui.SS_BOMRouter.cmdPrint.tabindex(6)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.UDT.uExport.Define("BIRUNID",Long,BIRUNID)
+Variable.UDT.uExport.Define("SEQ",String,SEQ)
+Variable.UDT.uExport.Define("PART",String,PART)
+Variable.UDT.uExport.Define("LMO",String,LMO)
+Variable.UDT.uExport.Define("SOURCE",String,SOURCE)
+Variable.UDT.uExport.Define("QUANTITY",Float,QUANTITY)
+Variable.UDT.uExport.Define("SETUP",Float,SETUP)
+Variable.uGlobal.uExport.Declare("uExport")
+Variable.Global.iBIRUNID.Declare(Long,0)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+'8/12/2015
+'GS Certified By: BCC
+
+Function.ODBC.Connection!conx.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+
+Gui.SS_BOMRouter.ddlType.AddItem("BOM",0)
+Gui.SS_BOMRouter.ddlType.AddItem("Router",1)
+Gui.SS_BOMRouter.ddlType.ListIndex(0)
+Gui.SS_BOMRouter..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.Main.End
+
+program.sub.ddltype_change.start
+F.Intrinsic.Control.SetErrorHandler("ddltype_change_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'CLEAR SCREEN
+Gui.SS_BOMRouter..ClearGroup(1)
+
+'TERMINATE SUBROUTINE
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("ddltype_change_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.ddltype_change.end
+
+program.sub.cmd_txtbomrtr_click.start
+F.Intrinsic.Control.SetErrorHandler("cmd_txtbomrtr_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+
+'Call browser based on selected type
+Function.Intrinsic.Control.If(V.Screen.SS_BOMRouter!ddlType.Text,=,"BOM")
+	Function.Intrinsic.UI.CommonBrowser(3000,"",V.Local.sRet)
+Function.Intrinsic.Control.Else
+	Function.Intrinsic.UI.CommonBrowser(2705,"",V.Local.sRet)
+Function.Intrinsic.Control.EndIf
+
+Function.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	Function.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.SS_BOMRouter.txtBomRtr.Text(V.Local.sRet(0).Trim)
+	Gui.SS_BOMRouter.txtDesc.Text(V.Local.sRet(1).Trim)
+Function.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmd_txtbomrtr_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmd_txtbomrtr_click.end
+
+program.sub.ss_BOMRouter_unload.start
+F.Intrinsic.Control.SetErrorHandler("ss_BOMRouter_unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!conx.Close
+Function.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("ss_BOMRouter_unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.ss_BOMRouter_unload.end
+
+program.sub.cmdprint_click.start
+F.Intrinsic.Control.SetErrorHandler("cmdprint_click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iLogID.Declare(Long)
+V.Local.sPN.Declare(String)
+V.local.sPV.Declare(String)
+V.Local.sQty.Declare(String)
+
+V.Local.sQty.Set(V.Screen.SS_BOMRouter!txtQty.Text)
+
+'MAKE SURE ROUTER/BOM AND QUANTITY ARE SELECTED AND THAT QUANTITY IS A NUMBER
+Function.Intrinsic.Control.If(V.Screen.SS_BOMRouter!txtBomRtr.Text,=,"")
+	Function.Intrinsic.UI.Msgbox("BOM/Router must be selected","Missing Fields")
+	Function.Intrinsic.control.ExitSub
+Function.Intrinsic.Control.ElseIf(V.Local.sQty.Trim,=,"","OR",V.Local.sQty.IsNumeric,<>,True)
+	Function.Intrinsic.UI.Msgbox("Quantity must be selected and be numeric.","Missing Fields")
+	Function.Intrinsic.Control.ExitSub
+Function.Intrinsic.Control.EndIf
+
+Gui.SS_BOMRouter..Visible(False)
+Function.Global.BI.GetRunID(V.Global.iBIRUNID)
+Function.Global.BI.StartLogging(V.Global.iBIRUNID,-1,-1,"",V.Local.iLogID)
+Function.Intrinsic.UI.InvokeWaitDialog("Evaluating Data","Please Wait")
+
+'PROCESS ACCORDINGLY, BASED ON ROUTER OR BOM
+Function.Intrinsic.Control.If(V.Screen.SS_BOMRouter!ddlType.Text,=,"BOM")
+	Function.Intrinsic.Control.CallSub(Getbom)
+Function.Intrinsic.Control.Else
+	Function.Intrinsic.Control.CallSub(Getrouter)
+Function.Intrinsic.Control.EndIf
+
+Function.Global.BI.StopLogging(V.Local.iLogID)
+
+V.Local.sPN.Set("TYPE*!*QUANTITY*!*PARENT*!*DESCRIPTION")
+Function.Intrinsic.String.Build("{0}*!*{1}*!*{2}*!*{3}",V.Screen.SS_BOMRouter!ddlType.Text,V.Screen.SS_BOMRouter!txtQty.Text,V.Screen.SS_BOMRouter!txtBomRtr.Text,V.ScreeN.SS_BOMRouter!txtDesc.TEXT,V.Local.sPV)
+Function.Global.BI.RunReportPreProcessor(V.Global.iBIRUNID,V.Local.iLogID,V.Local.sPN,V.Local.sPV,"",-1,False,"",-1,"",-1,"","",V.Global.iBIRUNID)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdprint_click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+program.sub.cmdprint_click.end
+
+Program.Sub.GetBOM.Start
+F.Intrinsic.Control.SetErrorHandler("GetBOM_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sFileIn.Declare(String)
+V.Local.sFileDataIn.Declare(String)
+V.Local.sFileOut.Declare(String)
+V.Local.sFIleDataOut.Declare(String)
+V.Local.bExists.Declare(Boolean)
+V.Local.sBOMData.Declare(String)
+V.Local.sBomSplit.Declare(String)
+V.Local.sCols.Declare(String)
+V.Local.i.Declare(Long)
+V.Local.iAdd.Declare(Long)
+V.Local.sExportDir.Declare(String)
+
+V.uGlobal.uExport.Redim(-1,-1)
+
+Function.Intrinsic.string.Build("{0}\GAB\GAS\Export",V.Caller.PluginsDir,V.Local.sExportDir)
+Function.Intrinsic.File.DirExists(V.Local.sExportDir,V.Local.bExists)
+
+Function.Intrinsic.Control.If(V.Local.bExists,=,False)
+	Function.Intrinsic.File.CreateDir(V.Local.sExportDir)
+Function.Intrinsic.Control.EndIf
+
+Function.Intrinsic.String.Build("{0}\GAB\GAS\EXPORT\{1}-TempBOMFile.txt",V.Caller.pluginsdir,V.Screen.SS_BOMRouter!txtBomRtr.Text,V.Local.sFileIn)
+Function.Intrinsic.String.Build("0{0}{1}{2}1",V.Ambient.Tab,V.Screen.SS_BOMRouter!txtBomRtr.Text,V.Ambient.Tab,V.Local.sFileDataIn)
+
+Function.Intrinsic.File.Exists(V.Local.sFileIn,V.Local.bExists)
+
+Function.Intrinsic.Control.If(V.Local.bExists,=,True)
+	Function.Intrinsic.File.DeleteFile(V.Local.sFileIn)
+Function.Intrinsic.Control.EndIf
+
+Function.Intrinsic.File.String2File(V.Local.sFileIn,V.Local.sFileDataIn)
+Function.Global.General.CallWrapperSync(410000,V.Local.sFileIn)
+
+Function.Intrinsic.File.File2String(V.Local.sFileIn,V.Local.sFIleDataOut)
+Function.Intrinsic.String.Split(V.Local.sFIleDataOut,V.Ambient.Tab,V.Local.sFIleDataOut)
+
+Function.Intrinsic.String.Trim(V.Local.sFIleDataOut(3),V.Local.sFileOut)
+Function.Intrinsic.String.Split(V.Local.sFileOut," ",V.Local.sFileOut)
+
+Function.Intrinsic.File.File2String(V.Local.sFileOut(0),V.Local.sBOMData)
+
+Function.Intrinsic.String.Split(V.Local.sBOMData,V.Ambient.NewLine,V.Local.sBomSplit)
+
+Function.Intrinsic.Control.For(V.Local.i,7,V.Local.sBomSplit.UBound,1)
+
+	Function.Intrinsic.Control.If(V.Local.sBOMSPlit(v.Local.i).Trim,<>,"")
+		Function.Intrinsic.String.Split(V.Local.sBomSplit(v.Local.i),"|~|",V.Local.sCols)
+
+		Function.Intrinsic.Control.If(V.uGlobal.uExport.UBound,=,-1)
+			V.Local.iAdd.Set(0)
+			V.uGlobal.uExport.Redim(0,0)
+		Function.Intrinsic.Control.Else
+			Function.Intrinsic.Math.Add(V.Local.iAdd,1,V.Local.iAdd)
+			V.uGlobal.uExport.RedimPreserve(0,V.Local.iAdd)
+		Function.Intrinsic.Control.EndIf
+
+		V.uGlobal.uExport(V.Local.iAdd)!BIRUNID.Set(V.Global.iBIRUNID)
+		V.uGlobal.uExport(V.Local.iAdd)!SEQ.Set(V.Local.sCols(1))
+		V.uGlobal.uExport(V.Local.iAdd)!PART.Set(V.Local.sCols(2).Trim)
+		V.uGlobal.uExport(V.Local.iAdd)!LMO.Set("M")
+		V.uGlobal.uExport(V.Local.iAdd)!SOURCE.Set(V.Local.sCols(5).Trim)
+		V.uGlobal.uExport(V.Local.iAdd)!QUANTITY.Set(V.Local.sCols(6).Float)
+		V.uGlobal.uExport(V.Local.iAdd)!SETUP.Set("0")
+	Function.Intrinsic.Control.EndIf
+
+Function.Intrinsic.Control.Next(V.Local.i)
+
+Function.Intrinsic.File.DeleteFile(V.Local.sFileOut(0))
+Function.Intrinsic.File.DeleteFile(V.Local.sFileIn)
+
+Function.ODBC.Connection!conx.OpenLocalRecordsetRW("rst","SELECT * FROM GCG_3555_BOM_RTR_EST")
+Function.Intrinsic.Variable.SaveUDTToRecordSet("cONX","RST","V.UGLOBAL.UEXPORT")
+Function.ODBC.conx!rst.Close
+Function.ODBC.Connection!conx.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GetBOM_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.GetBOM.End
+
+Program.Sub.GetRouter.Start
+F.Intrinsic.Control.SetErrorHandler("GetRouter_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSQL.Declare(String)
+
+V.Local.sSQL.Set("SELECT R.LINE_ROUTER AS SEQ, R.PART_WC_OUTSIDE AS PART, R.LMO, (SELECT I.CODE_SOURCE FROM V_INVENTORY_MST2 I WHERE I.PART = R.PART_WC_OUTSIDE) AS SOURCE, R.RUN_TIME AS QUANTITY, R.SET_UP AS SETUP,")
+Function.Intrinsic.String.Build("{0} '{1}' AS BIRUNID FROM V_ROUTER_LINE R WHERE R.LMO IN ('L','M') AND R.ROUTER = '{2}' ORDER BY LINE_ROUTER",V.Local.sSQL,V.global.iBIRUNID,V.Screen.SS_BOMRouter!txtBomRtr.Text,V.Local.sSQL)
+Function.ODBC.Connection!conx.OpenLocalRecordsetRO("rst",V.Local.sSQL)
+Function.Intrinsic.Control.If(V.ODBC.conx!rst.EOF,=,False)
+	Function.Intrinsic.Variable.LoadUDTFromRecordset("CONX","RST","V.uGlobal.uExport",False)
+Function.Intrinsic.Control.EndIf
+
+Function.ODBC.conx!rst.Close
+
+'SAVE DATA TO BI TABLE
+Function.Intrinsic.Control.If(V.uGlobal.uExport.UBound,<>,-1)
+	Function.ODBC.Connection!conx.OpenLocalRecordsetRW("rst","SELECT * FROM GCG_3555_BOM_RTR_EST")
+	Function.Intrinsic.Variable.SaveUDTToRecordSet("conx","rst","V.uGlobal.uExport")
+	Function.ODBC.Conx!rst.Close
+Function.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("GetRouter_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_3555_BOM_RTR_EST.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(Ss_bomrouter_unload)
+Function.Intrinsic.Control.EndIf
+
+
+Program.Sub.GetRouter.End
+
+Program.Sub.Comments.Start
+${$0$}$GCG_BOM_RTR_EST_Cert$}$BCC$}$10/7/2015
+${$2$}$$}$$}$1$}$4$}$GCG_BI_BOM_RTR_EST.sql$}$10/7/2015 2:25:42 PM$}$CREATE TABLE "GCG_BOM_RTR_EST_CERT"(
+ "BIRUNID" INTEGER NOT NULL ,
+ "SEQ" CHAR(20) NOT NULL ,
+ "PART" CHAR(20) NOT NULL ,
+ "LMO" CHAR(1) NOT NULL ,
+ "SOURCE" CHAR(2),
+ "QUANTITY" DOUBLE,
+ "SETUP" DOUBLE);
+${$2$}$$}$$}$0$}$4$}$Custom Menu Item$}$10/7/2015 2:24:10 PM$}$The project is called from a custom Menu Item: Estimating/Routing & Quote Management -> Reports -> Exploded BOM/Router with Labor and Material Tools
+${$3$}$0$}$$}$-1$}$-1$}$$}$1/1/1900$}$Report selection will be similar to BOM>View>Exploded BOM or Router Matl w Inv Status, however this report will total labor hours and material for each SEQ/level of a Router/BOM based on a # of pieces chosen to estimate with. Selection Screen will allow user to select 1 BOM or Router and a number of pieces to estimate with, and report will display SEQ, Part, Category, Source, Total Estimated Hours and Labor and Material and then a Grand total in the Footer of the report.
+${$4$}$0$}$$}$0$}$-1$}$BCC$}$10/7/2015 2:27:08 PM$}$GS Certified. Updated to use Preprocessor. Sped up code. Added Error handling. Changed obsolete code such as String.Concat to String.Build.
+Program.Sub.Comments.End
+
